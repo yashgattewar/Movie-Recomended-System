@@ -2,20 +2,19 @@ import streamlit as st
 import pickle
 import requests
 
-# =========================
+
 # TMDB API KEY
-# =========================
+
 API_KEY = "488c485e48dc08040579359b57e40957"
 
-# =========================
 # LOAD DATA
-# =========================
+
 final = pickle.load(open('final.pkl', 'rb'))
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
-# =========================
+
 # FETCH MOVIE POSTER
-# =========================
+
 @st.cache_data
 def fetch_poster(movie_id):
     try:
@@ -36,9 +35,9 @@ def fetch_poster(movie_id):
     except Exception as e:
         print("Error:", e)
         return None
-# =========================
+
 # RECOMMENDATION FUNCTION
-# =========================
+
 def recomended(movie):
     movie_index = final[final['title'] == movie].index[0]
 
@@ -62,9 +61,9 @@ def recomended(movie):
     return recommended_movies, recommended_posters
 
 
-# =========================
+
 # STREAMLIT UI
-# =========================
+
 st.set_page_config(
     page_title="Movie Recommendation System",
     page_icon="🎬",
